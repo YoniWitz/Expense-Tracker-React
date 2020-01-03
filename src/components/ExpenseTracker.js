@@ -4,6 +4,10 @@ import React from 'react'
 import FormComponent from './FormComponent'
 import TableComponent from './TableComponent'
 
+import Table from 'react-bootstrap/Table'
+import TableHead from './TableHead'
+
+
 
 class ExpenseTracker extends React.Component {
     constructor() {
@@ -13,9 +17,10 @@ class ExpenseTracker extends React.Component {
             date: "",
             amount: "",
             where: "",
-            expenses:[]
+            expenses: []
         }
         this.changeHandle = this.changeHandle.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     changeHandle(event) {
@@ -25,12 +30,51 @@ class ExpenseTracker extends React.Component {
         });
     }
 
+    handleSubmit(event) {
+        //console.log('An expense was submitted:', this.state.date, this.state.description, this.state.amount, this.state.where);
+        let newExpense = {
+            description: this.state.description,
+            date: this.state.date,
+            amount: this.state.amount,
+            where: this.state.where
+        }
+
+        this.setState(prevState => {
+            let newExpenses = prevState.expenses.map(item => item);
+            newExpenses.push(newExpense);
+            return ({
+                description: "",
+                date: "",
+                amount: "",
+                where: "",
+                expenses: newExpenses
+            })
+        })
+
+        event.preventDefault();
+    }
+
+    // shouldComponentUpdate(nextProps, nextState){
+    //     return (nextState.expenses.length !== this.state.expenses.length)
+    // }
+
     render() {
+        const returnedExpenses = this.state.expenses.map((expense, i) =>
+            <TableComponent key={i} expense={expense} rowNumber={i + 1} />
+        )
+
         return (
-            <div>
-                <FormComponent state={this.state} changeHandle={this.changeHandle} />
-                <TableComponent state={this.state}/>
-            </div>)
+            <main>
+                <FormComponent fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
+                <br />
+                <Table responsive>
+                    <TableHead />
+                    <tbody>
+                        {returnedExpenses}
+                    </tbody>
+                </Table>
+            </main>
+        )
     }
 }
 export default ExpenseTracker
