@@ -3,7 +3,12 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 
-function ExpenseTracker() {
+class ExpenseTracker extends React.Component {
+    constructor(){
+        super();
+    }
+
+    render(){
     return (<Form>
         <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -24,6 +29,6 @@ function ExpenseTracker() {
             Submit
     </Button>
     </Form>)
-
+    }
 }
 export default ExpenseTracker
