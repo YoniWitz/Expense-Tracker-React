@@ -65,9 +65,14 @@ class ExpenseTracker extends React.Component {
 
         return (
             <main>
+                <h1>Simple expense manager project</h1>
+                <h2>Add a new item:</h2>
+                <br />
+                
                 <FormComponent fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
                 <br />
-                <Table responsive>
+
+                <Table responsive bordered>
                     <TableHead />
                     <tbody>
                         {returnedExpenses}
