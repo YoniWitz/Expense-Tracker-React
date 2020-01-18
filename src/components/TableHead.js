@@ -2,8 +2,7 @@ import React from 'react'
 
 function TableHead() {
     return (
-
-        <thead>
+        <thead className="thead-light">
             <tr>
                 <th>#</th>
                 <th>Date</th>
@@ -13,7 +12,6 @@ function TableHead() {
                 <th>Actions</th>
             </tr>
         </thead>
-
     )
 }
 
