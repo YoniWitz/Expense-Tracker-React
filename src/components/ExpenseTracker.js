@@ -10,13 +10,15 @@ import Table from 'react-bootstrap/Table'
 class ExpenseTracker extends React.Component {
     constructor() {
         super();
+
         this.state = {
             description: "",
             date: "",
             amount: "",
             where: "",
-            expenses: []
+            expenses: []//expenses
         }
+
         this.changeHandle = this.changeHandle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -39,7 +41,10 @@ class ExpenseTracker extends React.Component {
 
         this.setState(prevState => {
             let newExpenses = prevState.expenses.map(item => item);
+
             newExpenses.push(newExpense);
+            window.localStorage.setItem('expenses', JSON.stringify(newExpenses));
+
             return ({
                 description: "",
                 date: "",
@@ -52,9 +57,15 @@ class ExpenseTracker extends React.Component {
         event.preventDefault();
     }
 
-    // shouldComponentUpdate(nextProps, nextState){
-    //     return (nextState.expenses.length !== this.state.expenses.length)
-    // }
+    shouldComponentUpdate(nextProps, nextState){
+        return (nextState.expenses.length !== this.state.expenses.length)
+    }
+
+    componentDidMount(){
+        let expenses = typeof (Storage) !== "undefined" ? JSON.parse(window.localStorage.getItem('expenses')) : [];
+
+        this.setState({expenses:expenses})
+    }
 
     render() {
         const returnedExpenses = this.state.expenses.map((expense, i) =>
@@ -66,7 +77,7 @@ class ExpenseTracker extends React.Component {
                 <h1>Simple expense manager project</h1>
                 <h2>Add a new item:</h2>
                 <br />
-                
+
                 <FormComponent fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
                 <br />
 
