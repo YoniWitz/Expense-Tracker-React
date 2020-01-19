@@ -4,7 +4,7 @@ Lets user keep track of expenses. Written in React.js, uses local storage and de
 
 ## You can use it [here](http://yw-expense-tracker-react.herokuapp.com/)
 
-<image src="assets/expense_tracker_snapshot.bmp">
+<image src="src/assets/expense_tracker_snapshot.bmp">
 
 ## Summary
 
