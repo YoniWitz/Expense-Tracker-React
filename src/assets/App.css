@@ -1,9 +1,11 @@
 .App {
   text-align: center;
   background-color: coral;
-
 }
 
+table{
+  background-color: white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

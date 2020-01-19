@@ -7,6 +7,7 @@ function FormComponent(props) {
     let fields = props.fields;
     let changeHandle = props.changeHandle;
     let handleSubmit = props.handleSubmit;
+    let isEnabled = props.isEnabled;
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -35,7 +36,7 @@ function FormComponent(props) {
                 </Form.Group>
             </Form.Row>
 
-            <Button variant="primary" type="submit">Submit</Button>
+            <Button disabled={!isEnabled} variant="primary" type="submit">Submit</Button>
         </Form>
     )
 }
