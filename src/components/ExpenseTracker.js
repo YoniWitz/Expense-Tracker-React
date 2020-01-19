@@ -21,6 +21,20 @@ class ExpenseTracker extends React.Component {
 
         this.changeHandle = this.changeHandle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+       this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleDelete(id){
+        this.setState(prevState => {
+            let newExpenses = prevState.expenses.slice();
+            newExpenses.splice(id, 1);
+          
+            window.localStorage.setItem('expenses', JSON.stringify(newExpenses));
+
+            return ({              
+                expenses: newExpenses
+            })
+        })
     }
 
     changeHandle(event) {
@@ -40,10 +54,9 @@ class ExpenseTracker extends React.Component {
         }
 
         this.setState(prevState => {
-
             let newExpenses = prevState.expenses.slice();
-
             newExpenses.push(newExpense);
+
             window.localStorage.setItem('expenses', JSON.stringify(newExpenses));
 
             return ({
@@ -66,7 +79,7 @@ class ExpenseTracker extends React.Component {
 
     render() {
         const returnedExpenses = this.state.expenses.map((expense, i) =>
-            <TableComponent key={i} expense={expense} rowNumber={i + 1} />
+            <TableComponent handleDelete={() => this.handleDelete(i)} key={i} expense={expense} rowNumber={i + 1} />
         )
 
         const { description, date, amount, where } = this.state;
@@ -79,7 +92,7 @@ class ExpenseTracker extends React.Component {
                 <h2>Add a new item:</h2>
                 <br />
 
-                <FormComponent isEnabled={isEnabled} fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
+                <FormComponent isEnabled={isEnabled} fields={this.state}  handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
                 <br />
 
                 <Table responsive bordered>
@@ -92,4 +105,5 @@ class ExpenseTracker extends React.Component {
         )
     }
 }
+
 export default ExpenseTracker
