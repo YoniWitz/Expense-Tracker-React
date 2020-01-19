@@ -40,7 +40,8 @@ class ExpenseTracker extends React.Component {
         }
 
         this.setState(prevState => {
-            let newExpenses = prevState.expenses.map(item => item);
+
+            let newExpenses = prevState.expenses.slice();
 
             newExpenses.push(newExpense);
             window.localStorage.setItem('expenses', JSON.stringify(newExpenses));
@@ -57,14 +58,10 @@ class ExpenseTracker extends React.Component {
         event.preventDefault();
     }
 
-    shouldComponentUpdate(nextProps, nextState){
-        return (nextState.expenses.length !== this.state.expenses.length)
-    }
-
-    componentDidMount(){
+    componentDidMount() {
         let expenses = typeof (Storage) !== "undefined" ? JSON.parse(window.localStorage.getItem('expenses')) : [];
 
-        this.setState({expenses:expenses})
+        this.setState({ expenses: expenses })
     }
 
     render() {
@@ -72,13 +69,17 @@ class ExpenseTracker extends React.Component {
             <TableComponent key={i} expense={expense} rowNumber={i + 1} />
         )
 
+        const { description, date, amount, where } = this.state;
+        const isEnabled = description.length > 0 && date.length > 0
+            && amount.length > 0 && where.length > 0;
+
         return (
             <main>
                 <h1>Simple expense manager project</h1>
                 <h2>Add a new item:</h2>
                 <br />
 
-                <FormComponent fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
+                <FormComponent isEnabled={isEnabled} fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
                 <br />
 
                 <Table responsive bordered>
