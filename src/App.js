@@ -1,7 +1,7 @@
 import React from 'react';
 import './assets/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ExpenseTracker from './components/ExpenseTracker'
+import ExpenseTracker from './components/expense-tracker'
 
 function App() {
   return (
