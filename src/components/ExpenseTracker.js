@@ -1,8 +1,8 @@
 import React from 'react'
 
-import FormComponent from './form-component'
-import TableComponent from './table-component'
-import TableHead from './table-head'
+import FormComponent from './FormComponent'
+import TableComponent from './TableComponent'
+import TableHead from './TableHead'
 
 import Table from 'react-bootstrap/Table'
 
