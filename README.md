@@ -11,7 +11,7 @@ Lets user keep track of expenses. Written in React.js, uses local storage and de
 
 I began participating in a 'Software Development Mastermind' mentorship program towards the end of 2019. The purpose of the program is to strengthen and expand my skills as a Full Stack developer. The completed work is showcased on my GitHub and profile/personal website.
 
-This Expense Tracker game is the third project of the series. I learned to use local storage, create SAPs on React.js and deploy the app to Heroku.
+This Expense Tracker app is the third project of the series. I learned to use local storage, create SAPs on React.js and deploy the app to Heroku.
 
 My ultimate goal is to land a job that incorporates my skills and utilizes my abilities and outgoing personality. So if you enjoyed reviewing my code as much as I did writing it, please find me on one of the links provided below.
 
