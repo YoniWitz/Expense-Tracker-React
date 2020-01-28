@@ -77,12 +77,12 @@ class ExpenseTracker extends React.Component {
     }
 
     render() {
-        const returnedExpenses = this.state.expenses.map((expense, i) =>
+        let returnedExpenses = this.state.expenses.map((expense, i) =>
             <TableComponent handleDelete={() => this.handleDelete(i)} key={i} expense={expense} rowNumber={i + 1} />
         )
 
-        const { description, date, amount, where } = this.state;
-        const isEnabled = description.length > 0 && date.length > 0
+        let { description, date, amount, where } = this.state;
+        let isEnabled = description.length > 0 && date.length > 0
             && amount.length > 0 && where.length > 0;
 
         return (
