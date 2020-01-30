@@ -2,12 +2,11 @@ import React from 'react'
 
 import Button from 'react-bootstrap/Button'
 
-function TableComponent(props) {
-    let expense = props.expense;
-    let rowNumber = props.rowNumber;
-    let handleDelete = props.handleDelete;
+function TableRow(props) {
+    let { expense, rowNumber, handleDelete } = props;
+
     return (
-        <tr>
+        <tr> 
             <td> {rowNumber} </td>
             <td> {expense.date} </td>
             <td> {expense.description} </td>
@@ -18,4 +17,4 @@ function TableComponent(props) {
     )
 }
 
-export default TableComponent
+export default TableRow
