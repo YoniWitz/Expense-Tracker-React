@@ -1,8 +1,8 @@
 import React from 'react'
 
 import FormComponent from './FormComponent'
-import TableComponent from './TableComponent'
 import TableHead from './TableHead'
+import TableBody from './TableBody'
 
 import Table from 'react-bootstrap/Table'
 
@@ -77,13 +77,6 @@ class ExpenseTracker extends React.Component {
     }
 
     render() {
-        let returnedExpenses = this.state.expenses.map((expense, i) =>
-            <TableComponent handleDelete={() => this.handleDelete(i)} key={i} expense={expense} rowNumber={i + 1} />
-        )
-
-        let { description, date, amount, where } = this.state;
-        let isEnabled = description.length > 0 && date.length > 0
-            && amount.length > 0 && where.length > 0;
 
         return (
             <main>
@@ -91,14 +84,12 @@ class ExpenseTracker extends React.Component {
                 <h2>Add a new item:</h2>
                 <br />
 
-                <FormComponent isEnabled={isEnabled} fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
+                <FormComponent fields={this.state} handleSubmit={this.handleSubmit} changeHandle={this.changeHandle} />
                 <br />
 
                 <Table responsive bordered>
                     <TableHead />
-                    <tbody>
-                        {returnedExpenses}
-                    </tbody>
+                    <TableBody expenses={this.state.expenses} handleDelete={this.handleDelete} />
                 </Table>
             </main>
         )
